@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Proyecto Calificaciones y Registro</title>
+</head>
+<body>
+    <div id="app">
+        <div class="tabs">
+            <button @click="activeTab = 'calculo'">Cálculo de calificaciones</button>
+            <button @click="activeTab = 'registro'">Formulario de registro</button>
+        </div>
+
+        <div v-if="activeTab === 'calculo'">
+            <h2>Cálculo de calificaciones</h2>
+            
+            <!-- Etiquetas para cada campo de notas y asistencia -->
+            <label for="nota1">Nota 1 (35%):</label>
+            <input id="nota1" type="number" v-model="nota1" placeholder="Nota 1 (10-70)" min="10" max="70" @input="validateNotas">
+
+            <label for="nota2">Nota 2 (35%):</label>
+            <input id="nota2" type="number" v-model="nota2" placeholder="Nota 2 (10-70)" min="10" max="70" @input="validateNotas">
+
+            <label for="nota3">Nota 3 (30%):</label>
+            <input id="nota3" type="number" v-model="nota3" placeholder="Nota 3 (10-70)" min="10" max="70" @input="validateNotas">
+
+            <label for="asistencia">Asistencia (%):</label>
+            <input id="asistencia" type="number" v-model="asistencia" placeholder="Asistencia (0-100)" min="0" max="100" @input="validateAsistencia">
+
+            <button @click="calcular">Calcular</button>
+            <p v-if="resultado">{{ resultado }}</p>
+        </div>
+
+        <div v-if="activeTab === 'registro'">
+            <h2>Formulario de registro</h2>
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" type="text" v-model="nombre" placeholder="Nombre" @input="validateNombre">
+
+            <label for="correo">Correo:</label>
+            <input id="correo" type="email" v-model="correo" placeholder="Correo" @input="validateCorreo">
+
+            <label for="contrasena">Contraseña:</label>
+            <input id="contrasena" type="password" v-model="contrasena" placeholder="Contraseña">
+
+            <label for="repetirContrasena">Repetir Contraseña:</label>
+            <input id="repetirContrasena" type="password" v-model="repetirContrasena" placeholder="Repetir Contraseña">
+
+            <button @click="enviarRegistro">Enviar</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
